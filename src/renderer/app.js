@@ -3200,15 +3200,6 @@ function refreshGridColor() {
   $('prompt').value = typeof persisted.odraft === 'string' ? persisted.odraft : '';
   autosize();
   applyAppearance();
-  // Reveal the hero mascot only when its art actually loads, so a missing or
-  // not-yet-generated asset never shows a broken image or a console error.
-  const heroMascot = $('heroMascot');
-  if (heroMascot) {
-    const showMascot = () => { if (heroMascot.naturalWidth) heroMascot.hidden = false; };
-    heroMascot.addEventListener('load', showMascot);
-    heroMascot.addEventListener('error', () => { heroMascot.hidden = true; });
-    if (heroMascot.complete) showMascot();
-  }
   syncScope();
   syncCompactComposerLabels();
   syncProductMode();

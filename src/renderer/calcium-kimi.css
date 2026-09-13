@@ -209,16 +209,6 @@ button, input, textarea, select { font-family: inherit; }
 /* ---- Home / hero ---- */
 #home { padding: 0; }
 #home .wrap { width: min(820px, calc(100% - 64px)); padding: 64px 0 88px; }
-.hero-mascot {
-  display: block;
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  object-fit: contain;
-  user-select: none;
-  pointer-events: none;
-}
-.hero-mascot[hidden] { display: none; }
 #home #greet {
   font-family: var(--k-display);
   font-size: 32px;

@@ -239,19 +239,19 @@ body { background:var(--shell-black); }
 .title-menu-popover button:hover { background:var(--shell-hover); color:var(--color-text); }
 .mode-switch { top:2px; height:44px; border-color:var(--shell-line); border-radius:10px; background:color-mix(in srgb,var(--shell-black) 92%,var(--color-bg)); }
 .mode-switch button { min-width:72px; min-height:44px; border-radius:8px; color:var(--shell-faint); font-size:10px; letter-spacing:.1em; }
-.mode-switch button.active { background:var(--shell-active); color:var(--color-text); box-shadow:none; }
+.mode-switch button.active { background:color-mix(in srgb,var(--color-text) 9%,var(--shell-black)); color:var(--color-text); box-shadow:none; }
 .title-recent,.utility-icon { min-height:46px; }
 .title-recent { min-height:46px; }
 
 #side { width:300px; padding:14px 12px 10px; background:var(--shell-ink); border-right-color:var(--shell-line); }
 #side .brand { min-height:32px; margin-bottom:9px; padding:0 9px; color:var(--color-text); font-size:13px; letter-spacing:.12em; }
-#side .newchat { order:1; min-height:46px; margin-bottom:10px; border:1px solid var(--shell-line); border-radius:9px; background:var(--shell-panel); font-weight:600; }
-#side .newchat:hover { border-color:var(--shell-line-strong); background:var(--shell-hover); }
+#side .newchat { order:1; min-height:44px; margin-bottom:8px; border:0; border-radius:7px; background:transparent; font-weight:500; }
+#side .newchat:hover { border-color:transparent; background:var(--shell-hover); }
 #side .title-nav { order:2; gap:1px; margin-bottom:8px; padding-bottom:10px; }
 #side .top-nav-btn { min-height:44px; border-radius:7px; color:var(--shell-muted); font-size:13px; }
 #side .top-nav-btn.active { background:var(--shell-active); color:var(--color-text); box-shadow:inset 2px 0 0 var(--color-accent); }
-#side .swarm-launch { order:3; min-height:44px; border:1px solid var(--shell-line); border-radius:8px; background:transparent; }
-#side .swarm-launch:hover { border-color:var(--shell-line-strong); background:var(--shell-hover); }
+#side .swarm-launch { order:3; min-height:44px; border:0; border-radius:7px; background:transparent; }
+#side .swarm-launch:hover { border-color:transparent; background:var(--shell-hover); }
 .recents-label { min-height:44px; color:var(--shell-faint); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
 .recent,.sidebar-project { min-height:44px; border-radius:7px; }
 .recent.active,.sidebar-project.active { background:var(--shell-active); box-shadow:inset 2px 0 0 var(--color-accent); }
@@ -259,20 +259,19 @@ body { background:var(--shell-black); }
 
 #main { background:var(--shell-black); }
 #home { background:var(--shell-black); }
-#home .wrap { width:min(900px,calc(100% - 64px)); padding:44px 0 76px; }
+#home .wrap { width:min(820px,calc(100% - 64px)); padding:72px 0 94px; }
 #home #greet { font-size:34px; font-weight:610; letter-spacing:-.045em; }
 #home .sub { margin-bottom:30px; color:var(--shell-muted); }
-#composerCard { border-color:var(--shell-line-strong); border-radius:12px; background:color-mix(in srgb,var(--shell-panel) 94%,var(--color-bg)); box-shadow:0 2px 8px color-mix(in srgb,#000 22%,transparent); }
-#composerCard:focus-within { border-color:color-mix(in srgb,var(--color-accent) 52%,var(--shell-line)); box-shadow:0 0 0 2px color-mix(in srgb,var(--color-accent) 10%,transparent); }
-#send { background:var(--color-accent); color:#fff; box-shadow:none; }
-#send:hover { background:color-mix(in srgb,var(--color-accent) 88%,white); }
+#composerCard { border-color:var(--shell-line-strong); border-radius:14px; background:color-mix(in srgb,var(--shell-panel) 94%,var(--color-bg)); box-shadow:none; }
+#composerCard:focus-within { border-color:color-mix(in srgb,var(--color-text) 28%,var(--shell-line)); box-shadow:0 0 0 1px color-mix(in srgb,var(--color-text) 10%,transparent); }
+#send { background:var(--color-text); color:var(--shell-black); box-shadow:none; }
+#send:hover { background:color-mix(in srgb,var(--color-text) 84%,var(--shell-black)); }
 #chips .chip { color:var(--shell-faint); }
 #chips .chip:hover { color:var(--color-text); background:var(--shell-hover); }
 
-/* Each top-level mode has its own working composition. The stage is real UI,
-   not a decorative interstitial: every prompt and project control routes into
-   the existing composer or project view. */
-.mode-stage { width:100%; min-height:76px; margin:0 0 20px; }
+/* Codex-like empty state: one quiet task canvas. Mode changes alter the real
+   scope, greeting and available actions without inserting a second demo UI. */
+.mode-stage { display:none; }
 .mode-scene { position:relative; width:100%; color:var(--shell-muted); }
 .mode-scene[hidden] { display:none; }
 .mode-scene-chat { display:flex; align-items:center; justify-content:center; gap:13px; min-height:76px; }
@@ -299,12 +298,10 @@ body { background:var(--shell-black); }
 .code-live-dot { width:7px; height:7px; border-radius:50%; background:var(--color-accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--color-accent) 13%,transparent); }
 .code-actions { display:flex; flex:none; gap:4px; }.code-actions button { min-width:44px; padding-inline:11px; text-align:center; }
 
-#home:has(.mode-stage[data-mode="work"]) .wrap { width:min(1040px,calc(100% - 64px)); }
-#home:has(.mode-stage[data-mode="work"]) #greet,#home:has(.mode-stage[data-mode="code"]) #greet { text-align:left; }
-#home:has(.mode-stage[data-mode="work"]) .sub,#home:has(.mode-stage[data-mode="code"]) .sub { text-align:left; max-width:640px; }
-#home:has(.mode-stage[data-mode="work"]) #composerCard { margin-top:32px; }
-#home:has(.mode-stage[data-mode="code"]) .wrap { width:min(1040px,calc(100% - 64px)); }
-#home:has(.mode-stage[data-mode="code"]) #composerCard { margin-top:16px; border-radius:10px; }
+#home:has(.mode-stage[data-mode="work"]) .wrap,#home:has(.mode-stage[data-mode="code"]) .wrap { width:min(820px,calc(100% - 64px)); }
+#home:has(.mode-stage[data-mode="work"]) #greet,#home:has(.mode-stage[data-mode="code"]) #greet { text-align:center; }
+#home:has(.mode-stage[data-mode="work"]) .sub,#home:has(.mode-stage[data-mode="code"]) .sub { max-width:none; text-align:center; }
+#home:has(.mode-stage[data-mode="work"]) #composerCard,#home:has(.mode-stage[data-mode="code"]) #composerCard { margin-top:0; border-radius:14px; }
 #home:has(.mode-stage[data-mode="code"]) #prompt { font-family:"Cascadia Mono",Consolas,monospace; }
 
 .mode-stage.is-transitioning .mode-scene.active { animation:mode-scene-in .38s cubic-bezier(.2,.8,.2,1) both; }

@@ -88,7 +88,7 @@ button, input, textarea, select { font-family: inherit; }
   left: auto;
   top: auto;
   transform: none;
-  height: 36px;
+  height: 50px;
   margin: 0 6px 0 2px;
   padding: 3px;
   gap: 2px;
@@ -103,7 +103,7 @@ button, input, textarea, select { font-family: inherit; }
   align-items: center;
   gap: 6px;
   min-width: 0;
-  min-height: 30px;
+  min-height: 44px;
   padding: 0 14px;
   border: 0;
   border-radius: 8px;
@@ -124,14 +124,14 @@ button, input, textarea, select { font-family: inherit; }
 }
 
 .utility-icon, .window-control {
-  min-width: 38px;
-  min-height: 38px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 8px !important;
   color: var(--k-text-2) !important;
 }
 .utility-icon:hover, .window-control:hover { background: var(--k-hover) !important; color: var(--k-text) !important; }
 .window-control.close:hover { background: rgba(255, 255, 255, 0.16) !important; color: var(--k-text) !important; }
-.title-recent { min-height: 38px; color: var(--k-text-2); font-size: 12px; }
+.title-recent { min-height: 44px; color: var(--k-text-2); font-size: 12px; }
 
 /* ---- App frame: sidebar flush on the canvas, content in one inset panel ---- */
 #side {
@@ -150,7 +150,7 @@ button, input, textarea, select { font-family: inherit; }
 
 /* ---- Sidebar rows: flat, 40px, muted, section labels tiny ---- */
 #side .brand {
-  min-height: 40px;
+  min-height: 44px;
   margin: 0 0 6px;
   padding: 0 8px;
   color: var(--k-text);
@@ -159,7 +159,7 @@ button, input, textarea, select { font-family: inherit; }
   letter-spacing: 0.06em;
 }
 #side .newchat {
-  min-height: 40px;
+  min-height: 44px;
   margin: 0 0 10px;
   padding: 0 10px;
   border: 1px solid var(--k-line);
@@ -174,7 +174,7 @@ button, input, textarea, select { font-family: inherit; }
 
 #side .title-nav { gap: 1px; margin: 0 0 10px; padding: 0 0 10px; border-bottom: 1px solid var(--k-line); }
 #side .top-nav-btn {
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 10px;
   border-radius: 8px;
   color: var(--k-text-2);
@@ -196,8 +196,8 @@ button, input, textarea, select { font-family: inherit; }
 .swarm-launch-copy strong { font-size: 13.5px; font-weight: 450; }
 #side .swarm-launch.active { background: var(--k-active); color: var(--k-text); box-shadow: none; }
 
-.recents-label { min-height: 34px; color: var(--k-text-3); font-size: 12px; font-weight: 500; }
-.recent, .sidebar-project { min-height: 38px; border-radius: 8px; color: var(--k-text-2); font-size: 13px; }
+.recents-label { min-height: 44px; color: var(--k-text-3); font-size: 12px; font-weight: 500; }
+.recent, .sidebar-project { min-height: 44px; border-radius: 8px; color: var(--k-text-2); font-size: 13px; }
 .recent:hover, .sidebar-project:hover { background: var(--k-hover); color: var(--k-text); }
 .recent.active, .sidebar-project.active { background: var(--k-active); color: var(--k-text); font-weight: 550; }
 
@@ -258,8 +258,8 @@ button, input, textarea, select { font-family: inherit; }
 }
 .model-btn:hover, .composer-mode:hover { background: var(--k-hover); color: var(--k-text); }
 #send {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border: 0;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.16);
@@ -376,6 +376,9 @@ button, input, textarea, select { font-family: inherit; }
   height: 19px;
   background: url('../assets/ui/attach.png') center / contain no-repeat;
 }
+#attachBtn { width: 44px; min-width: 44px; }
+#side .swarm-launch { min-height: 44px; }
+#modelBtn { min-width: 44px; }
 #send:not(.queue-send) { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: transparent; }
 #send:not(.queue-send)::before {
   content: '';
@@ -384,6 +387,13 @@ button, input, textarea, select { font-family: inherit; }
   background: url('../assets/ui/send.png') center / contain no-repeat;
 }
 #send:not(.queue-send):hover { background: transparent; }
+
+@media (max-width: 350px) {
+  .composer-foot { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; padding-inline: 4px; }
+  .composer-foot .left { display: grid; grid-template-columns: 44px minmax(44px, 1fr) 44px 44px; gap: 0; }
+  .composer-foot .left .composer-mode { width: 44px; min-width: 44px; flex-basis: 44px; }
+  #send { justify-self: end; }
+}
 
 /* The mark is white; flip it on light themes so it stays visible. */
 html[data-theme="light"] .calcium-mark,
